@@ -27,12 +27,13 @@ class ProjectController extends Controller
 
     }
 
-    // public function show(string $id)
-    // {
-    //     $project = Post::with('type', 'technologies')->findOrFail($id);
-    //     return response()->json([
-    //         'success' => true,
-    //         'results' => $project
-    //     ]);
-    // }
+    public function show(Post $post)
+    {
+        $post = Post::with('category', 'user', 'tags')->findOrFail($post);
+
+        return response()->json([
+            'success' => true,
+            'results' => $post
+        ]);
+    }
 }
